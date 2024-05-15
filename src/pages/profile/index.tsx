@@ -23,7 +23,7 @@ export function Profile() {
   },[])
 
   if(!token){
-    return <Navigate to='/home'/>
+    return <Navigate to='/'/>
   }
 
 

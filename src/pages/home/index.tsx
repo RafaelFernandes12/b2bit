@@ -2,7 +2,7 @@ import axios from '../../interceptors/request';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import logo from '../../../public/B2Bit Logo.png'
+import logo from '../../assets/B2Bit Logo.png'
 import "react-toastify/dist/ReactToastify.css";
 
 export function Home() {

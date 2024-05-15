@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer {
+  main{
+    @apply flex items-center justify-center w-full h-screen;
+  }
+}

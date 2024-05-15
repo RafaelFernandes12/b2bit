@@ -1,0 +1,62 @@
+import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
+import axios from '../../interceptors/response';
+
+export function Profile() {
+
+  const [token, setToken] = useState(localStorage.getItem('token'))
+  const [profile, setProfile] = useState<any>('');
+  
+  function logOut(){
+    localStorage.removeItem('token');
+    setToken('');
+  }
+
+  useEffect(()=> {
+    axios.get('https://api.homologation.cliqdrive.com.br/auth/profile/', {
+      headers:{"Content-Type" : "application/json", "Accept": "application/json;version=v1_web"}
+    })
+    .then((response) => {
+      setProfile(response.data)
+    })
+    
+  },[])
+
+  if(!token){
+    return <Navigate to='/home'/>
+  }
+
+
+  return (
+    <>
+    {profile ? 
+      <>
+        <header className="bg-white w-full h-20 absolute">
+        <button onClick={logOut} className="bg-[#02274f] text-white py-3 px-32 font-semibold rounded-lg m-4 float-right">Logout</button>
+      </header>
+      <main className="bg-[#f1f5f9]">
+        <div className="shadow-2xl rounded-xl shadow-black/50 w-[400px] h-[350px] px-5 flex justify-center flex-col bg-white gap-4">
+          <div className="flex items-center justify-center flex-col">
+            <h1 className="w-full text-center">Profile picture</h1>
+            <img src={`${profile.avatar}`} alt='homem apontando para o lado' className="w-20 h-20 rounded-lg" />
+          </div>
+
+          <div className="flex flex-col gap-6 w-full">
+            <div className="flex flex-col gap-2">
+              <label htmlFor="gmail" className="font-medium"><span className="font-normal">Your</span> Name</label>
+              <input placeholder={`${profile.name}`}  id='gmail' className="rounded-lg p-3 bg-[#f1f1f1] cursor-default" readOnly/>
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="font-medium"><span className="font-normal">Your</span> E-mail</label>
+              <input placeholder={`${profile.email}`} className="rounded-lg p-3 bg-[#f1f1f1] cursor-default" readOnly/>
+            </div>
+          </div>
+        </div>
+      </main>  
+      </>
+      :
+        <p className="w-full h-screen flex justify-center items-center">Loading...</p>
+    }
+    </>
+  );
+}

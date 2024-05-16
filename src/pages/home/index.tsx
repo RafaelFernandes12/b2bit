@@ -1,9 +1,9 @@
-import axios from '../../interceptors/request';
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import logo from '../../assets/B2Bit Logo.png'
 import "react-toastify/dist/ReactToastify.css";
+import { login } from "../../api/crud/login";
+import { useNavigate } from "react-router-dom";
 
 export function Home() {
 
@@ -13,28 +13,24 @@ export function Home() {
 
   async function postUser(e: any){
     e.preventDefault()
-
-    await axios.post("https://api.homologation.cliqdrive.com.br/auth/login/", 
-        {email,password},
-    {
-      headers: {"Content-Type": "application/json", "Accept" : "application/json;version=v1_web"}
-    })
-    .then((response) => {
-      localStorage.setItem("token", `Bearer ${response.data.tokens.access}`)
-      navigate("/profile");
-    })
-    .catch(() => {
-      toast.error("Email ou senha incorretos", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-      });
-    })
+    login(email, password)
+      .then((response) => {
+        navigate('/profile')
+        localStorage.setItem("token", `Bearer ${response.data.tokens.access}`)
+        //console.log(response)
+      })
+      .catch(() => {
+        toast.error("Email ou senha incorretos", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+      })
   }
 
   

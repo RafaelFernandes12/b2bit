@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import axios from '../../interceptors/response';
+import { getUserInfo } from "../../api/crud/getUserInfo";
 
 export function Profile() {
 
@@ -13,19 +13,12 @@ export function Profile() {
   }
 
   useEffect(()=> {
-    axios.get('https://api.homologation.cliqdrive.com.br/auth/profile/', {
-      headers:{"Content-Type" : "application/json", "Accept": "application/json;version=v1_web"}
-    })
-    .then((response) => {
-      setProfile(response.data)
-    })
-    
+    getUserInfo().then(response => setProfile(response.data))    
   },[])
-
+  //console.log(profile)
   if(!token){
     return <Navigate to='/'/>
   }
-
 
   return (
     <>

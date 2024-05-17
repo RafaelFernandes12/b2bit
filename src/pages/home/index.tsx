@@ -20,7 +20,8 @@ export function Home() {
         //console.log(response)
       })
       .catch(() => {
-        toast.error("Email ou senha incorretos", {
+        if(!email || !password){
+          toast.error("Por favor, preencha todos os campos", {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -30,6 +31,20 @@ export function Home() {
             progress: undefined,
             theme: "colored",
         });
+
+        }
+        else {
+          toast.error("Email ou senha incorretos", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+          });
+        }
       })
   }
 
@@ -42,30 +57,34 @@ export function Home() {
           <div className="flex flex-col gap-2">
             <label htmlFor="gmail" className="font-medium">E-mail</label>
             <input 
+              data-cy='inputEmail'
               onChange={e => setEmail(e.target.value)}
-              placeholder="@gmail.com"  id='gmail' className="rounded-lg p-3 bg-[#f1f1f1]" type="email"  required/>
+              placeholder="@gmail.com"  id='gmail' className="rounded-lg p-3 bg-[#f1f1f1]" type="email" />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="password" className="font-medium">Password</label>
             <input 
+              data-cy='inputPassword'
               onChange={e => setPassword(e.target.value)}
-              placeholder="*********************" id="password" className="rounded-lg p-3 bg-[#f1f1f1]" type="password" required/>
+              placeholder="*********************" id="password" className="rounded-lg p-3 bg-[#f1f1f1]" type="password"/>
           </div>
-          <button type="submit" className="bg-[#02274f] w-full rounded-lg text-white p-3">Sign In</button>
+          <button type="submit" data-cy='signInBtn' className="bg-[#02274f] w-full rounded-lg text-white p-3">Sign In</button>
         </form>
       </div>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
+      <div data-cy='toast'>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />'
+      </div>
     </main>
   );
 }

@@ -46,6 +46,8 @@ export function Home() {
           });
         }
       })
+      console.log(email)
+      console.log(password)
   }
 
   

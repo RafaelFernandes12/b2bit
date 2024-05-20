@@ -1,31 +1,32 @@
-# React + TypeScript + Vite
+<h1 align='center'>
+  <img src='./src/assets/B2Bit Logo.png' alt='show a "b2b" with a dark blue color and a "it" right next to it with painted in yellow, these words represent the b2bit logo'/>
+</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img src='./src/assets/b2bit.gif' />
 
-Currently, two official plugins are available:
+## 📚 About
+This is a sample project for the b2bit company.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The b2bit consists of a simple login page and a profile page, with the user data displayed on the profile page.
 
-## Expanding the ESLint configuration
+## 🔨 Tools
+- [React Js](https://react.dev/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Tailwind css](https://tailwindcss.com/)
+- [Cypress](https://www.cypress.io/)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## ✍️ How to contribute
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+  # Clone the repository
+  https://github.com/RafaelFernandes12/b2bit.git
+```
+```bash
+  # Enter the repositoy
+  cd b2bit
+```
+```bash
+  # Install all the dependencies
+  npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-# b2bit
